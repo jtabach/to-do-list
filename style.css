@@ -1,0 +1,9 @@
+#field {
+	margin: 30px auto;
+}
+
+#task,
+#due,
+#add {
+	margin-right: 30px;
+}
