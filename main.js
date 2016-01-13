@@ -1,3 +1,4 @@
+(function() {
 
 $(document).ready(init);
 
@@ -11,7 +12,7 @@ function init() {
 
 function addItem() {
 	descr[0] = $('#task').val();
-	manipulateDate();
+	descr[1] = manipulateDate();
 	descr[2] = $('<div class="checkbox"><label><input type="checkbox"> Done</label></div>');
 	descr[3] = $('<button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
 	evalEntry();
@@ -27,8 +28,8 @@ function evalEntry() {
 
 function manipulateDate() {
 	var $due = $('#due');
-	var dateString = $due.val().replace(/-/g,"");
-	descr[1] = moment(dateString, "YYYYMMDD").fromNow();
+	var dateString = $due.val();
+	return moment(dateString, "YYYY-MM-DD").fromNow();
 }
 
 function appendTask() {
@@ -45,9 +46,7 @@ function appendTask() {
 
 
 function checkOverdue(tr) {
-	console.log(descr[1].indexOf("ago"))
 	if (descr[1].indexOf("ago") > 0) {
-		console.log('noooo')
 		tr.addClass('danger');
 	}
 }
@@ -69,5 +68,4 @@ function removeCompleted() {
 	$('.success').remove();
 }
 
-
-
+})()
