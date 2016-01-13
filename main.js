@@ -4,10 +4,9 @@ $(document).ready(init);
 var classAdds = ['tasks', 'dates', 'done', 'remove'];
 var descr = [];
 
-console.log(moment("20160131", "YYYYMMDD").fromNow());
-
 function init() {
 	$('#add').on('click', addItem);
+	$('#completed').on('click', removeCompleted);
 }
 
 function addItem() {
@@ -41,6 +40,16 @@ function appendTask() {
 	});
 	$('.remove > button').on('click', removeTask); // Duplicate invocations
 	$('label :checkbox').on('click', toggleCompleteTask); // Duplicate invocations
+	checkOverdue(tr);
+}
+
+
+function checkOverdue(tr) {
+	console.log(descr[1].indexOf("ago"))
+	if (descr[1].indexOf("ago") > 0) {
+		console.log('noooo')
+		tr.addClass('danger');
+	}
 }
 
 function removeTask() {
@@ -55,3 +64,10 @@ function toggleCompleteTask() {
 		$this.closest('.done').parent().removeClass('success');
 	}
 }
+
+function removeCompleted() {
+	$('.success').remove();
+}
+
+
+
